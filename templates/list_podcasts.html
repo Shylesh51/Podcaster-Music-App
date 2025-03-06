@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}All Podcasts | Podcaster{% endblock title %}
+
+{% block content %}
+    <div class="container mx-auto mt-8 px-4 pb-8">  <!-- Added horizontal padding and bottom padding -->
+        <div class="text-3xl font-bold mb-8">Podcasts</div>  <!-- Increased bottom margin -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">  <!-- Increased gap between cards -->
+            {% for podcast in podcasts %}
+                <a href={% url "detail" podcast.slug %} class="bg-green-100 rounded-lg shadow-md p-6 flex flex-col justify-between 
+                    hover:shadow-lg transition duration-300">  <!-- Added hover effect and transition -->
+                    <div class="space-y-4">  <!-- Added vertical spacing between elements -->
+                        <img src="{{ podcast.thumbnail.url }}" alt="Podcast Thumbnail" 
+                             class="w-full h-48 object-cover rounded-lg mb-6">  <!-- Increased image height and margin -->
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">{{ podcast.title }}</h3>  <!-- Increased text size and margin -->
+                            <p class="text-green-500 font-medium mb-4">By {{ podcast.author }}</p>  <!-- Changed color and added margin -->
+                            <p class="text-gray-600 text-sm line-clamp-4">{{ podcast.description }}</p>  <!-- Added text styling and line clamp -->
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
